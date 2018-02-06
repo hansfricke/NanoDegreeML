@@ -11960,7 +11960,7 @@ Name: income, dtype: int64</pre>
 <span class="n">n_at_most_50k</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;income&#39;</span><span class="p">]</span><span class="o">==</span><span class="s1">&#39;&lt;=50K&#39;</span><span class="p">])</span>
 
 <span class="c1"># TODO: Percentage of individuals whose income is more than $50,000</span>
-<span class="n">greater_percent</span> <span class="o">=</span> <span class="n">n_greater_50k</span> <span class="o">/</span> <span class="nb">float</span><span class="p">(</span><span class="n">n_records</span><span class="p">)</span>
+<span class="n">greater_percent</span> <span class="o">=</span> <span class="p">(</span><span class="n">n_greater_50k</span> <span class="o">/</span> <span class="nb">float</span><span class="p">(</span><span class="n">n_records</span><span class="p">))</span><span class="o">*</span><span class="mi">100</span>
 
 <span class="c1"># Print the results</span>
 <span class="k">print</span> <span class="s2">&quot;Total number of records: {}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">n_records</span><span class="p">)</span>
@@ -13166,21 +13166,21 @@ It is a ratio of true positives(words classified as spam, and which are actually
 <li>SVMs can be applied to email classification, e.g. spam classification. The email text is transformed into word count vectors. These vectors are then used as features to train the SVM.</li>
 <li>SVMs perform well in data sets with a large feature space and a clear margin of separation. Furthermore, it deals with outliers elegantly.</li>
 <li>They do not work well in noisy data, i.e. mislabeled data or a lot of irrelevant features. Furthermore, the learning time is relatively long.</li>
-<li>Text classification is a problem with a lot of features of which only few are irrelevant when pre-processes correctly. Text classification problems appear to be linearly separable.</li>
+<li>Income classification is a problem with several features of which only few seem irrelevant. Income classification of this form may be lineraly seperable.</li>
 </ol>
 <p>Decision Tree Classifier</p>
 <ol>
 <li>Fraud detection is one example where decision trees have been used. See for instance <a href="http://www.sciencedirect.com/science/article/pii/S0167923610001302">http://www.sciencedirect.com/science/article/pii/S0167923610001302</a>. For credit card fraud, fraudulent activities are labels such. Characteristics of activities such as location, amount, are frequency are used as features.</li>
 <li>Decision trees are very intuitive and provide graphical representation of classification given the features. They captures non-linearity in the data.</li>
 <li>Decision trees are prone to overfitting, especially when lots of features are available. They are sensitive to the sample drawn, as one split influences all following splits.</li>
-<li>The problem of fraud detection lends itself well to decision trees because of the limited number of features.</li>
+<li>The problem of income classification lends itself well to decision trees because of the limited number of features.</li>
 </ol>
 <p>Gradient Decent Boosting</p>
 <ol>
-<li>Physical activity classification using EMG signals is one example. "Electromyograpy (EMG) refers to the collective electric signal from muscles, which is controlled by the nervous system and produced during muscle contraction. (<a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3821366/">https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3821366/</a>)" The features are processed signals form several sensors. This is a multi-class problem as usually more than two activities need to be classified. That is, for each class a separate model is fitted against all other classes. Then the class with the highest probability is assigned. A standard loss function is the average class wise accuracy. For more details on such an application see <a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3885826/">https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3885826/</a>. </li>
+<li>Physical activity classification using EMG signals is one example. "Electromyograpy (EMG) refers to the collective electric signal from muscles, which is controlled by the nervous system and produced during muscle contraction. (<a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3821366/">https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3821366/</a>)" The features are processed signals form several sensors. This is a multi-class problem as usually more than two activities need to be classified. That is, for each class a separate model is fitted against all other classes. Then the class with the highest probability is assigned. A standard loss function is the average class wise accuracy. For more details on such an application see <a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3885826/">https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3885826/</a>.</li>
 <li>Similar to other boosting methods, it does not over fit and can handle sparse data sets with many features as long as the employed learner does not over fit. They are also very flexible and can accommodate several different learners and loss functions. Finally, they capture non-linear feature label relations well.</li>
 <li>In comparison to other ensemble methods such as Random Forests, they are more prone to overfitting and have more hyper parameters that can be tuned. The learning time is also longer.</li>
-<li>Physical activity classification with EMG has a high dimensional feature space.</li>
+<li>This problem most likely exhibits non-linearities between features and income class. Moreover, the feature space is large enough that other algorthims would potentially overfit.</li>
 </ol>
 
 </div>
@@ -14361,7 +14361,7 @@ Final F-score on the testing data: 0.7369
 <p><strong>Answer:</strong></p>
 <ol>
 <li>occupation: The indicator for executive/managerial should be very predictive because salaries in these positions are usually much higher than in other occupations.</li>
-<li>eductaion_num: Education is a very important determinant of salaries. The number of years in education is more a granular representation of the highest educational degree. That's why it may explain more variation in salaries. </li>
+<li>eductaion_num: Education is a very important determinant of salaries. The number of years in education is more a granular representation of the highest educational degree. That's why it may explain more variation in salaries.</li>
 <li>age: Age is probably highly predictive of the education as salaries rise with years of education, tenure, and work experience.</li>
 <li>sex: The sex will be predictive of salaries because even today more women than men decide to focus on child raising instead of the career. Moreover, women on average still choose less lucrative careers. Discrimination in the labor market may also lead to lower wages.</li>
 <li>capital gain: The fact that someone has capital gains means that they have capital investments. Usually, people with capital investments are those that have relatively higher salaries.</li>
@@ -14762,7 +14762,7 @@ kgbmD1UDyQ8/zSGlAAAAAElFTkSuQmCC
 <div class="text_cell_render border-box-sizing rendered_html">
 <p><strong>Answer:</strong></p>
 <ul>
-<li>I selected three out of the most important features in Question 6. I did not select hours-per-week and marital-status-civ-spouse indicator. The exec/managerial dummy and sex are not among the five most important features. </li>
+<li>I selected three out of the most important features in Question 6. I did not select hours-per-week and marital-status-civ-spouse indicator. The exec/managerial dummy and sex are not among the five most important features.</li>
 <li>age is the most important feature. This makes sense as it highly correlates with tenure and work experience. Capital gain and education_num are also important which is in line with my argument.</li>
 <li>I did not select hours-per-week and marital-status-civ-spouse. The number of hours are predictive as they capture salary difference for instance due to part-time work or overtime. Marriage might be predictive of high incomes because more financially mature couples decide to get married.</li>
 </ul>
@@ -14856,7 +14856,7 @@ F-score on testing data: 0.7098
 <p><strong>Answer:</strong></p>
 <ul>
 <li>The F-score and the accuracy based on the reduced data are somewhat lower but still fairly similar.</li>
-<li>It depends on the application a difference of 0.03 in the F-score could be negligible or costly. If training time savings outweigh the costs due lower precision, I would consider using the reduced training set. </li>
+<li>It depends on the application a difference of 0.03 in the F-score could be negligible or costly. If training time savings outweigh the costs due lower precision, I would consider using the reduced training set.</li>
 </ul>
 
 </div>
